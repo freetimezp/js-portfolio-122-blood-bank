@@ -1,11 +1,15 @@
 {
   "name": "js-portfolio-122-blood-bank",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "blood bank app",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "freetimezp",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }
