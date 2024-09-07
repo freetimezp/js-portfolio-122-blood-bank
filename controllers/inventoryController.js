@@ -41,5 +41,24 @@ const createInventoryController = async (req, res) => {
 };
 
 
+//get all inventory records 
+const getInventoryController = async (req, res) => {
+    try {
+        const inventory = await inventoryModel.find({ organization: req.body.userId });
 
-module.exports = { createInventoryController };
+        return res.status(200).send({
+            success: true,
+            message: "get all records inventory success",
+            inventory
+        });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).send({
+            success: false,
+            message: "Error get all inventory API",
+            error
+        });
+    }
+};
+
+module.exports = { createInventoryController, getInventoryController };
