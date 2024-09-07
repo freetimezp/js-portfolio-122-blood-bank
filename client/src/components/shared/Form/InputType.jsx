@@ -13,6 +13,7 @@ const InputType = ({ labelText, labelFor, inputType, name, value, onChange }) =>
                 value={value}
                 placeholder={labelText}
                 onChange={onChange}
+                required
             />
         </div>
     );
