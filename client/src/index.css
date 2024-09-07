@@ -3,3 +3,33 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body, html {
+    width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.form-banner img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+
+
+
+
+
+
+
+
+
