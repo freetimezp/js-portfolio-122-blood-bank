@@ -14,6 +14,7 @@ const Login = () => {
                     <Form
                         formTitle="Login page"
                         submitBtn="Login"
+                        formType="login"
                     />
                 </div>
             </div>
