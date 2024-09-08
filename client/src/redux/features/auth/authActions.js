@@ -27,6 +27,47 @@ export const userLogin = createAsyncThunk(
     }
 );
 
+export const userRegister = createAsyncThunk(
+    'auth/register',
+    async ({
+        email,
+        password,
+        name,
+        role,
+        organizationName,
+        hospitalName,
+        website,
+        address,
+        phone
+    }, { rejectWithValue }) => {
+        try {
+            const { data } = await API.post("/auth/register", {
+                email,
+                password,
+                name,
+                role,
+                organizationName,
+                hospitalName,
+                website,
+                address,
+                phone
+            });
+
+            //store token
+            if (data?.success) {
+                toast.success("User registered successfully.");
+                window.location.replace("/login");
+            }
+        } catch (error) {
+            if (error.response && error.response.data.message) {
+                return rejectWithValue(error.response.data.message);
+            } else {
+                return rejectWithValue(error.message);
+            }
+        }
+    }
+);
+
 
 
 
