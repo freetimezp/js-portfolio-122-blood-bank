@@ -38,64 +38,62 @@ const Form = ({ formType, formTitle, submitBtn }) => {
             <h1 className='text-center'>{formTitle}</h1>
             <hr />
 
-            {/* sform check */}
-            {formType === "register" && (
-                <div className='d-flex mb-3'>
-                    <div className="form-check">
-                        <input
-                            type="radio"
-                            className="form-check-input"
-                            name="role"
-                            id="adminRadio"
-                            value={'admin'}
-                            onChange={(e) => setRole(e.target.value)}
-                        />
-                        <label htmlFor="adminRadio" className='form-check-label'>
-                            Admin
-                        </label>
-                    </div>
-                    <div className="form-check ms-2">
-                        <input
-                            type="radio"
-                            className="form-check-input"
-                            name="role"
-                            id="hospitalRadio"
-                            value={'hospital'}
-                            onChange={(e) => setRole(e.target.value)}
-                        />
-                        <label htmlFor="hospitalRadio" className='form-check-label'>
-                            Hospital
-                        </label>
-                    </div>
-                    <div className="form-check ms-2">
-                        <input
-                            type="radio"
-                            className="form-check-input"
-                            name="role"
-                            id="organizationRadio"
-                            value={'organization'}
-                            onChange={(e) => setRole(e.target.value)}
-                        />
-                        <label htmlFor="organizationRadio" className='form-check-label'>
-                            Organization
-                        </label>
-                    </div>
-                    <div className="form-check ms-2">
-                        <input
-                            type="radio"
-                            className="form-check-input"
-                            name="role"
-                            id="donarRadio"
-                            value={'donar'}
-                            onChange={(e) => setRole(e.target.value)}
-                            defaultChecked
-                        />
-                        <label htmlFor="donarRadio" className='form-check-label'>
-                            Donar
-                        </label>
-                    </div>
+            {/* form check */}
+            <div className='d-flex mb-3'>
+                <div className="form-check">
+                    <input
+                        type="radio"
+                        className="form-check-input"
+                        name="role"
+                        id="adminRadio"
+                        value={'admin'}
+                        onChange={(e) => setRole(e.target.value)}
+                    />
+                    <label htmlFor="adminRadio" className='form-check-label'>
+                        Admin
+                    </label>
                 </div>
-            )}
+                <div className="form-check ms-2">
+                    <input
+                        type="radio"
+                        className="form-check-input"
+                        name="role"
+                        id="hospitalRadio"
+                        value={'hospital'}
+                        onChange={(e) => setRole(e.target.value)}
+                    />
+                    <label htmlFor="hospitalRadio" className='form-check-label'>
+                        Hospital
+                    </label>
+                </div>
+                <div className="form-check ms-2">
+                    <input
+                        type="radio"
+                        className="form-check-input"
+                        name="role"
+                        id="organizationRadio"
+                        value={'organization'}
+                        onChange={(e) => setRole(e.target.value)}
+                    />
+                    <label htmlFor="organizationRadio" className='form-check-label'>
+                        Organization
+                    </label>
+                </div>
+                <div className="form-check ms-2">
+                    <input
+                        type="radio"
+                        className="form-check-input"
+                        name="role"
+                        id="donarRadio"
+                        value={'donar'}
+                        onChange={(e) => setRole(e.target.value)}
+                        defaultChecked
+                    />
+                    <label htmlFor="donarRadio" className='form-check-label'>
+                        Donar
+                    </label>
+                </div>
+            </div>
 
             {/* switch form login or register */}
             {(() => {
