@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import Spinner from '../components/shared/Spinner';
 import Layout from '../components/shared/Layout/Layout';
 
+import Modal from '../components/shared/Modal/Modal';
+
 const HomePage = () => {
     const { loading, error } = useSelector(state => state.auth);
 
@@ -12,10 +14,18 @@ const HomePage = () => {
             {error && <span>{alert(error)}</span>}
 
             {loading ? <Spinner /> : (
-                <div>
+                <>
+                    <h4
+                        className='ms-4'
+                        data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop"
+                        style={{ cursor: "pointer" }}
+                    >
+                        <i className="fa-solid fa-plus text-success py-4"></i> Add Inventory
+                    </h4>
 
-                    HomePage
-                </div>
+                    <Modal />
+                </>
             )}
         </Layout>
     );

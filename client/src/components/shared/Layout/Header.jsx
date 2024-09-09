@@ -17,21 +17,24 @@ const Header = () => {
 
     return (
         <header>
-            <nav className="navbar">
+            <nav className="navbar p-3 px-4">
                 <div className="container-fluid">
                     <div className="navbar-brand">
                         <BiDonateBlood color='red' /> Blood Bank
                     </div>
 
-                    <ul className="navbar-nav d-flex flex-row">
+                    <ul className="navbar-nav d-flex flex-row align-items-center">
                         <li className="nav-item mx-3">
-                            <p className="nav-link">
+                            <p className="nav-link m-0">
                                 <BiUserCircle /> Welcome - {" "}
-                                <span className='text-capitalize'>{user?.user.name ?? "quest"}</span>!
+                                <span className='text-capitalize'>
+                                    {user?.user.name || user?.user.hospitalName || user?.user.organizationName || "quest"}
+                                </span>! {" "}
+                                <span className='badge bg-secondary'>{user?.user.role}</span>
                             </p>
                         </li>
                         <li className="nav-item mx-3">
-                            <button className="btn btn-secondary" onClick={handleLogout}>
+                            <button className="btn btn-warning" onClick={handleLogout}>
                                 Logout
                             </button>
                         </li>
