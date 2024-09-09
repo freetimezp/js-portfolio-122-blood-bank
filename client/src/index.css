@@ -24,9 +24,33 @@ body, html {
     min-height: 100vh;
 }
 
+.loader-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+}
 
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    border-bottom-color: lightskyblue;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotationLoader 2s linear infinite;
+}
 
-
+@keyframes rotationLoader {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.5) rotate(360deg);
+    }
+}
 
 
 
