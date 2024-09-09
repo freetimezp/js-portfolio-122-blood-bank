@@ -54,6 +54,12 @@ body, html {
 
 
 
+.navbar {
+    background-color: #000 !important;
+    color: #fff !important;
+}
 
-
-
+.navbar-brand,
+.nav-link {
+    color: #fff !important;
+}
