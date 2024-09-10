@@ -1,12 +1,44 @@
 import React, { useState } from 'react';
+import { useSelector } from "react-redux";
 
 import InputType from "../Form/InputType";
+
+import API from "../../../services/API";
 
 const Modal = () => {
     const [inventoryType, setInventoryType] = useState("in");
     const [bloodGroup, setBloodGroup] = useState("");
     const [quantity, setQuantity] = useState(0);
     const [donarEmail, setDonarEmail] = useState("");
+
+    const { user } = useSelector(state => state.auth);
+    //console.log(user?.user.email);
+
+    const handleModalSubmit = async () => {
+        try {
+            if (!bloodGroup || !quantity) {
+                return alert("Please, provide all fields..");
+            }
+
+            const { data } = await API.post('/inventory/create-inventory', {
+                donarEmail,
+                email: user?.user.email,
+                organization: user?.user._id,
+                inventoryType,
+                bloodGroup,
+                quantity
+            });
+
+            if (data?.success) {
+                alert("New record created..");
+                window.location.reload();
+            }
+
+        } catch (error) {
+            console.log(error.message);
+            window.location.reload();
+        }
+    };
 
     return (
         <div>
@@ -15,7 +47,7 @@ const Modal = () => {
                 id="staticBackdrop"
                 data-bs-backdrop="static"
                 data-bs-keyboard="false"
-                tabindex="-1"
+                tabIndex="-1"
                 aria-labelledby="staticBackdropLabel"
                 aria-hidden="true"
             >
@@ -54,11 +86,11 @@ const Modal = () => {
                             </div>
 
                             <select
-                                class="form-select"
+                                className="form-select"
                                 aria-label="Default select example"
                                 onChange={(e) => setBloodGroup(e.target.value)}
                             >
-                                <option selected>Open this select menu</option>
+                                <option defaultValue>Open this select menu</option>
                                 <option value="O+">O+</option>
                                 <option value="O-">O-</option>
                                 <option value="AB+">AB+</option>
@@ -75,19 +107,27 @@ const Modal = () => {
                                 inputType="email"
                                 value={donarEmail}
                                 onChange={(e) => setDonarEmail(e.target.value)}
+                                required
                             />
                             <InputType
-                                labelText="Quantity"
+                                labelText="Quantity (ML)"
                                 labelFor="quantity"
                                 inputType="number"
                                 value={quantity}
                                 onChange={(e) => setQuantity(e.target.value)}
+                                required
                             />
                         </div>
 
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Submit</button>
+                            <button
+                                type="button"
+                                className="btn btn-primary"
+                                onClick={handleModalSubmit}
+                            >
+                                Submit
+                            </button>
                         </div>
                     </div>
                 </div>
