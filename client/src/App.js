@@ -10,6 +10,7 @@ import Donar from './pages/dashboard/Donar';
 
 import ProtectedRoute from './components/Routes/ProtectedRoute';
 import PublicRoute from './components/Routes/PublicRoute';
+import Hospitals from './pages/dashboard/Hospitals';
 
 function App() {
   return (
@@ -19,6 +20,12 @@ function App() {
         <Route path="/donar" element={
           <ProtectedRoute>
             <Donar />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/hospital" element={
+          <ProtectedRoute>
+            <Hospitals />
           </ProtectedRoute>
         } />
 

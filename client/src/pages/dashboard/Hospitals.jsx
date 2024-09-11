@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Layout from '../../components/shared/Layout/Layout';
 import API from '../../services/API';
 import moment from 'moment';
 
-const Donar = () => {
+const Hospitals = () => {
     const [data, setData] = useState([]);
 
-    const getDonars = async () => {
+    const getHospitals = async () => {
         try {
-            const { data } = await API.get("/inventory/get-donars");
+            const { data } = await API.get("/inventory/get-hospitals");
             if (data?.success) {
-                setData(data?.donars);
+                setData(data?.hospitals);
             }
         } catch (error) {
-            console.log("getDonars func: ", error);
+            console.log("getHospitals func: ", error);
         }
     };
 
     useEffect(() => {
-        getDonars();
+        getHospitals();
+        console.log(data);
+
     }, []);
 
     return (
@@ -27,7 +29,7 @@ const Donar = () => {
             <div className="container">
 
                 <h4 className="m-4">
-                    Donars Page
+                    Hospitals Page
                 </h4>
                 <hr />
 
@@ -37,6 +39,7 @@ const Donar = () => {
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
+                            <th scope="col">Address</th>
                             <th scope="col">Date</th>
                         </tr>
                     </thead>
@@ -48,6 +51,7 @@ const Donar = () => {
                                     || record.hospitalName + " (HOS)"}</td>
                                 <td>{record.email}</td>
                                 <td>{record.phone}</td>
+                                <td>{record.address}</td>
                                 <td>{moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}</td>
                             </tr>
                         ))}
@@ -58,4 +62,4 @@ const Donar = () => {
     );
 }
 
-export default Donar;
+export default Hospitals;
