@@ -81,6 +81,8 @@ const createInventoryController = async (req, res) => {
             }
 
             req.body.hospital = user?._id;
+        } else {
+            req.body.donar = user?._id;
         }
 
 
@@ -128,4 +130,38 @@ const getInventoryController = async (req, res) => {
     }
 };
 
-module.exports = { createInventoryController, getInventoryController };
+
+//get donar records 
+const getDonarsController = async (req, res) => {
+    try {
+        const organization = req.body.userId;
+        //console.log(organization);
+
+        //find donars
+        const donarId = await inventoryModel.distinct("donar", {
+            organization
+        });
+
+        //console.log(donarId);
+        const donars = await userModel.find({ _id: { $in: donarId } });
+
+        return res.status(200).send({
+            success: true,
+            message: "Donar records fetched successfully",
+            donars
+        });
+    } catch (error) {
+        console.log("getDonarsController:", error);
+        return res.status(500).send({
+            success: false,
+            message: "Error in Donar records",
+            error
+        });
+    }
+}
+
+module.exports = {
+    createInventoryController,
+    getInventoryController,
+    getDonarsController
+};
