@@ -11,6 +11,7 @@ import Donar from './pages/dashboard/Donar';
 import ProtectedRoute from './components/Routes/ProtectedRoute';
 import PublicRoute from './components/Routes/PublicRoute';
 import Hospitals from './pages/dashboard/Hospitals';
+import Organization from './pages/dashboard/Organization';
 
 function App() {
   return (
@@ -26,6 +27,12 @@ function App() {
         <Route path="/hospital" element={
           <ProtectedRoute>
             <Hospitals />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/organization" element={
+          <ProtectedRoute>
+            <Organization />
           </ProtectedRoute>
         } />
 

@@ -4,22 +4,22 @@ import Layout from '../../components/shared/Layout/Layout';
 import API from '../../services/API';
 import moment from 'moment';
 
-const Hospitals = () => {
+const Organization = () => {
     const [data, setData] = useState([]);
 
-    const getHospitals = async () => {
+    const getOrganizations = async () => {
         try {
-            const { data } = await API.get("/inventory/get-hospitals");
+            const { data } = await API.get("/inventory/get-organization");
             if (data?.success) {
-                setData(data?.hospitals);
+                setData(data?.organizations);
             }
         } catch (error) {
-            console.log("getHospitals func: ", error);
+            console.log("getOrganizations func: ", error);
         }
     };
 
     useEffect(() => {
-        getHospitals();
+        getOrganizations();
     }, []);
 
     return (
@@ -27,7 +27,7 @@ const Hospitals = () => {
             <div className="container">
 
                 <h4 className="m-4">
-                    Hospitals Page
+                    Organizations Page
                 </h4>
                 <hr />
 
@@ -60,4 +60,4 @@ const Hospitals = () => {
     );
 }
 
-export default Hospitals;
+export default Organization;
