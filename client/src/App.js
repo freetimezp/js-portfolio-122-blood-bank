@@ -12,12 +12,26 @@ import ProtectedRoute from './components/Routes/ProtectedRoute';
 import PublicRoute from './components/Routes/PublicRoute';
 import Hospitals from './pages/dashboard/Hospitals';
 import Organization from './pages/dashboard/Organization';
+import Consumer from './pages/dashboard/Consumer';
+import Donation from './pages/dashboard/Donation';
 
 function App() {
   return (
     <>
       <ToastContainer />
       <Routes>
+        <Route path="/consumer" element={
+          <ProtectedRoute>
+            <Consumer />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/donation" element={
+          <ProtectedRoute>
+            <Donation />
+          </ProtectedRoute>
+        } />
+
         <Route path="/donar" element={
           <ProtectedRoute>
             <Donar />

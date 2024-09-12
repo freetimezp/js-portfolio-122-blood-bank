@@ -131,6 +131,33 @@ const getInventoryController = async (req, res) => {
 };
 
 
+//get all hospital inventory records 
+const getInventoryHospitalController = async (req, res) => {
+    try {
+        const inventory = await inventoryModel
+            .find(req.body.filters)
+            .populate('donar')
+            .populate('hospital')
+            .populate('organization')
+            .sort({ createdAt: -1 });
+
+        return res.status(200).send({
+            success: true,
+            message: "get all hospital inventory success",
+            inventory
+        });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).send({
+            success: false,
+            message: "Error get all hospital inventory API",
+            error
+        });
+    }
+};
+
+
+
 //get donar records 
 const getDonarsController = async (req, res) => {
     try {
@@ -245,6 +272,7 @@ const getOrganizationForHospitalController = async (req, res) => {
 module.exports = {
     createInventoryController,
     getInventoryController,
+    getInventoryHospitalController,
     getDonarsController,
     getHospitalsController,
     getOrganizationController,
