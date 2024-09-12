@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { BiDonateBlood, BiUserCircle } from "react-icons/bi";
 import { useSelector } from 'react-redux';
@@ -20,7 +20,9 @@ const Header = () => {
             <nav className="navbar p-3 px-4">
                 <div className="container-fluid">
                     <div className="navbar-brand">
-                        <BiDonateBlood color='red' /> Blood Bank
+                        <Link to="/" className='text-white'>
+                            <BiDonateBlood color='red' />Blood Bank
+                        </Link>
                     </div>
 
                     <ul className="navbar-nav d-flex flex-row align-items-center">
