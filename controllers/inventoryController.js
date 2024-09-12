@@ -157,6 +157,28 @@ const getInventoryHospitalController = async (req, res) => {
 };
 
 
+//get blood records if 3
+const getRecentInventoryController = async (req, res) => {
+    try {
+        const inventory = await inventoryModel.find({
+            organization: req.body.userId
+        }).limit(3).sort({ createdAt: -1 });
+
+        return res.status(200).send({
+            success: true,
+            message: "get resent blood records if 3 success",
+            inventory
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send({
+            success: false,
+            message: "getRecentInventoryController arror API",
+            error
+        });
+    }
+};
+
 
 //get donar records 
 const getDonarsController = async (req, res) => {
@@ -276,5 +298,6 @@ module.exports = {
     getDonarsController,
     getHospitalsController,
     getOrganizationController,
-    getOrganizationForHospitalController
+    getOrganizationForHospitalController,
+    getRecentInventoryController
 };

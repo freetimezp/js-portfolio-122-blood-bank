@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import { BiDonateBlood, BiUserCircle } from "react-icons/bi";
 import { useSelector } from 'react-redux';
@@ -8,6 +8,8 @@ import { useSelector } from 'react-redux';
 const Header = () => {
     const { user } = useSelector(state => state.auth);
     const navigate = useNavigate();
+    const location = useLocation();
+    //console.log(location.pathname);
 
     //logout handler 
     const handleLogout = () => {
@@ -35,6 +37,25 @@ const Header = () => {
                                 <span className='badge bg-secondary'>{user?.user.role}</span>
                             </p>
                         </li>
+
+                        {
+                            location.pathname === "/"
+                                || location.pathname === "/donar"
+                                || location.pathname === "/hospital" ? (
+                                <li className="nav-item mx-3">
+                                    <Link className="nav-link m-0" to="/analytics">
+                                        Analytics
+                                    </Link>
+                                </li>
+                            ) : (
+                                <li className="nav-item mx-3">
+                                    <Link className="nav-link m-0" to="/">
+                                        Home
+                                    </Link>
+                                </li>
+                            )
+                        }
+
                         <li className="nav-item mx-3">
                             <button className="btn btn-warning" onClick={handleLogout}>
                                 Logout
