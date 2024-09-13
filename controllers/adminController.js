@@ -44,7 +44,7 @@ const getHospitalsListController = async (req, res) => {
     }
 };
 
-//orgd list
+//orgs list
 const getOrgsListController = async (req, res) => {
     try {
         const orgData = await userModel.find({ role: "organization" }).sort({ createdAt: -1 });
@@ -66,7 +66,33 @@ const getOrgsListController = async (req, res) => {
     }
 };
 
-module.exports = { getDonarsListController, getHospitalsListController, getOrgsListController };
+
+//delete
+const deleteController = async (req, res) => {
+    try {
+        await userModel.findByIdAndDelete(req.params.id);
+
+        return res.status(200).send({
+            success: true,
+            message: "delete success"
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send({
+            success: false,
+            message: "deleteController error",
+            error
+        });
+    }
+};
+
+
+module.exports = {
+    getDonarsListController,
+    getHospitalsListController,
+    getOrgsListController,
+    deleteController
+};
 
 
 
