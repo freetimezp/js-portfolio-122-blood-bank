@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 
 import Spinner from '../components/shared/Spinner';
@@ -9,8 +10,9 @@ import Modal from '../components/shared/Modal/Modal';
 import API from '../services/API';
 
 const HomePage = () => {
-    const { loading, error } = useSelector(state => state.auth);
+    const { loading, error, user } = useSelector(state => state.auth);
     const [data, setData] = useState([]);
+    const navigate = useNavigate();
 
     //get inventory data
     const getBloodRecords = async () => {
@@ -32,6 +34,12 @@ const HomePage = () => {
 
     return (
         <Layout>
+            {user?.user.role === "admin" && (
+                <div className='m-4'>
+                    <Link to="/admin" className='btn-primary text-white btn'>Admin page</Link>
+                </div>
+            )}
+
             {error && <span>{alert(error)}</span>}
 
             {loading ? <Spinner /> : (
